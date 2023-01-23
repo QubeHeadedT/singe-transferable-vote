@@ -10,11 +10,33 @@ export const VoteGraph: React.FC<{
   const { fps } = useVideoConfig();
 	const frame = useCurrentFrame();
 
+  const voteBars = [{
+    color: 'red',
+    votes: 100,
+  },
+  {
+    color: 'blue',
+    votes: 50,
+  },
+  {
+    color: 'green',
+    votes: 25,
+  }]
+
   return (
-    <>
-      <Bar maxWidth={300} color='red' barHeight={barHeight} offset={0} frame={frame} fps={fps} padding={barPadding}/>
-			<Bar maxWidth={200} color='blue' barHeight={barHeight} offset={1} frame={frame} fps={fps} padding={barPadding}/>
-      <Bar maxWidth={150} color='green' barHeight={barHeight} offset={2} frame={frame} fps={fps} padding={barPadding}/>
-    </>
+    <AbsoluteFill 
+      style={{
+        justifyContent: 'center',
+				alignItems: 'center',
+      }}
+    >
+      <svg width={800} height={500}>
+        <Bar maxWidth={800} color='red' barHeight={barHeight} offset={0} frame={frame} fps={fps} padding={barPadding}/>
+        <Bar maxWidth={200} color='blue' barHeight={barHeight} offset={1} frame={frame} fps={fps} padding={barPadding}/>
+        <Bar maxWidth={150} color='green' barHeight={barHeight} offset={2} frame={frame} fps={fps} padding={barPadding}/>
+      </svg>
+
+
+    </AbsoluteFill>
   )
 }

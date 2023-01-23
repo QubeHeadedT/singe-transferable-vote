@@ -23,17 +23,6 @@ export const Bar: React.FC<{
   const barWidth = interpolate(fill, [0, 1], [0, maxWidth]);
 
   return (
-    <AbsoluteFill 
-      style={{
-        justifyContent: 'center',
-				alignItems: 'center',
-        fill: color,
-      }}
-    >
-      <svg>
-        <rect y={offset*(barHeight + padding)} width={barWidth} height={barHeight} rx="0.1em"/>
-      </svg>
-    </AbsoluteFill>
-    
+    <rect y={offset*(barHeight + padding)} fill={color} width={barWidth} height={barHeight} rx="0.1em"/>
   )
 }
