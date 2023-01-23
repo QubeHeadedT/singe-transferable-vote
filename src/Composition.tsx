@@ -5,6 +5,7 @@ export const MyComposition = () => {
 	const { fps, durationInFrames, width, height } = useVideoConfig();
 
 	const barHeight = 50;
+	const barPadding = 10;
 
 	return (
 		
@@ -19,7 +20,7 @@ export const MyComposition = () => {
 				height: height,
 
 		}}>
-			< VoteGraph barHeight={barHeight} />
+			< VoteGraph barHeight={barHeight} barPadding={barPadding}/>
 		</div>
 	)
 };

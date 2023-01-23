@@ -8,7 +8,8 @@ export const Bar: React.FC<{
   offset: number;
   frame: number;
   fps: number;
-}> = ({ maxWidth, color, barHeight, offset, frame, fps}) => {
+  padding: number;
+}> = ({ maxWidth, color, barHeight, offset, frame, fps, padding}) => {
 
   const fill = spring({
     fps,
@@ -30,7 +31,7 @@ export const Bar: React.FC<{
       }}
     >
       <svg>
-        <rect y={offset*barHeight} width={barWidth} height={barHeight} rx="0.1em"/>
+        <rect y={offset*(barHeight + padding)} width={barWidth} height={barHeight} rx="0.1em"/>
       </svg>
     </AbsoluteFill>
     
