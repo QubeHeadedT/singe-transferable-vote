@@ -1,9 +1,8 @@
-import { useVideoConfig, useCurrentFrame } from "remotion";
-import { Bar } from "./components/Bar";
+import { useVideoConfig } from "remotion";
+import { VoteGraph } from "./components/VoteGraph";
 
 export const MyComposition = () => {
 	const { fps, durationInFrames, width, height } = useVideoConfig();
-	const frame = useCurrentFrame();
 
 	const barHeight = 50;
 
@@ -20,8 +19,7 @@ export const MyComposition = () => {
 				height: height,
 
 		}}>
-			<Bar maxWidth={300} color='red' barHeight={barHeight} offset={0}/>
-			<Bar maxWidth={200} color='blue' barHeight={barHeight} offset={1}/>
+			< VoteGraph barHeight={barHeight} />
 		</div>
 	)
 };

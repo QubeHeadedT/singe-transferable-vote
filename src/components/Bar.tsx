@@ -1,17 +1,25 @@
 import React from "react";
-import { AbsoluteFill, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, spring, interpolate } from "remotion";
 
 export const Bar: React.FC<{
   maxWidth: number;
   color: string;
   barHeight: number;
   offset: number;
-}> = ({ maxWidth, color, barHeight, offset }) => {
+  frame: number;
+  fps: number;
+}> = ({ maxWidth, color, barHeight, offset, frame, fps}) => {
 
-  const frame = useCurrentFrame();
-  const { fps, durationInFrames } = useVideoConfig();
+  const fill = spring({
+    fps,
+    frame: frame,
+    config: {
+      damping: 100,
+      mass: 5,
+    }
+  })
 
-  const width = maxWidth * (frame / durationInFrames);
+  const barWidth = interpolate(fill, [0, 1], [0, maxWidth]);
 
   return (
     <AbsoluteFill 
@@ -22,7 +30,7 @@ export const Bar: React.FC<{
       }}
     >
       <svg>
-        <rect y={offset*barHeight} width={width} height={barHeight} rx="0.1em"/>
+        <rect y={offset*barHeight} width={barWidth} height={barHeight} rx="0.1em"/>
       </svg>
     </AbsoluteFill>
     
