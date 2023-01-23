@@ -1,42 +1,52 @@
-import React from "react";
-import { Bar } from "./Bar";
-import { AbsoluteFill, useCurrentFrame, useVideoConfig } from "remotion";
+import React from 'react';
+import {Bar} from './Bar';
+import {AbsoluteFill, useCurrentFrame, useVideoConfig} from 'remotion';
 
 export const VoteGraph: React.FC<{
-  barHeight: number;
-  barPadding: number;
-}> = ({ barHeight, barPadding }) => {
-
-  const { fps } = useVideoConfig();
+	barHeight: number;
+	barPadding: number;
+}> = ({barHeight, barPadding}) => {
+	const {fps} = useVideoConfig();
 	const frame = useCurrentFrame();
 
-  const voteBars = [{
-    color: 'red',
-    votes: 100,
-  },
-  {
-    color: 'blue',
-    votes: 50,
-  },
-  {
-    color: 'green',
-    votes: 25,
-  }]
+	const voteBars = [
+		{
+			color: 'red',
+			votes: 750,
+		},
+		{
+			color: 'blue',
+			votes: 500,
+		},
+		{
+			color: 'green',
+			votes: 250,
+		},
+	];
 
-  return (
-    <AbsoluteFill 
-      style={{
-        justifyContent: 'center',
+	return (
+		<AbsoluteFill
+			style={{
+				justifyContent: 'center',
 				alignItems: 'center',
-      }}
-    >
-      <svg width={800} height={500}>
-        <Bar maxWidth={800} color='red' barHeight={barHeight} offset={0} frame={frame} fps={fps} padding={barPadding}/>
-        <Bar maxWidth={200} color='blue' barHeight={barHeight} offset={1} frame={frame} fps={fps} padding={barPadding}/>
-        <Bar maxWidth={150} color='green' barHeight={barHeight} offset={2} frame={frame} fps={fps} padding={barPadding}/>
-      </svg>
-
-
-    </AbsoluteFill>
-  )
-}
+			}}
+		>
+			<svg width={800} height={500}>
+				{voteBars.map((bar, index) => {
+					console.log(bar);
+					return (
+						<Bar
+							maxWidth={bar.votes}
+							barHeight={barHeight}
+							color={bar.color}
+							offset={index}
+							frame={frame}
+							fps={fps}
+							padding={barPadding}
+						/>
+					);
+				})}
+			</svg>
+		</AbsoluteFill>
+	);
+};
