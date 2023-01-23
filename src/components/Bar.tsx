@@ -15,7 +15,7 @@ export const Bar: React.FC<{
     frame: frame,
     config: {
       damping: 100,
-      mass: 5,
+      mass: 10,
     }
   })
 
