@@ -14,7 +14,7 @@ export const VoteGraph: React.FC<{
     <>
       <Bar maxWidth={300} color='red' barHeight={barHeight} offset={0} frame={frame} fps={fps} padding={barPadding}/>
 			<Bar maxWidth={200} color='blue' barHeight={barHeight} offset={1} frame={frame} fps={fps} padding={barPadding}/>
-      <Bar maxWidth={200} color='blue' barHeight={barHeight} offset={2} frame={frame} fps={fps} padding={barPadding}/>
+      <Bar maxWidth={150} color='green' barHeight={barHeight} offset={2} frame={frame} fps={fps} padding={barPadding}/>
     </>
   )
 }
