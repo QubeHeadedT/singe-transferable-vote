@@ -24,6 +24,17 @@ export const VoteGraph: React.FC<{
 		},
 	];
 
+	const voteData = {
+		ballot: 'Belfast East',
+		quota: 600,
+		votes: voteBars,
+	}
+
+	const width = 800
+	const height = 500
+
+	const quotaLine = width * 0.75
+
 	return (
 		<AbsoluteFill
 			style={{
@@ -31,12 +42,12 @@ export const VoteGraph: React.FC<{
 				alignItems: 'center',
 			}}
 		>
-			<svg width={800} height={500}>
-				{voteBars.map((bar, index) => {
-					console.log(bar);
+			<svg width={width} height={height}>
+				
+				{voteData.votes.map((bar, index) => {
 					return (
 						<Bar
-							maxWidth={bar.votes}
+							maxWidth={(bar.votes / voteData.quota) * quotaLine}
 							barHeight={barHeight}
 							color={bar.color}
 							offset={index}
@@ -46,6 +57,7 @@ export const VoteGraph: React.FC<{
 						/>
 					);
 				})}
+				<line x1={quotaLine} x2={quotaLine} y1={0} y2={height} stroke="green" strokeWidth={3}/>
 			</svg>
 		</AbsoluteFill>
 	);
