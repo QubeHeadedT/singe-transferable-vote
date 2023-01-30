@@ -9,23 +9,33 @@ export const VoteGraph: React.FC<{
 	const {fps} = useVideoConfig();
 	const frame = useCurrentFrame();
 
+	const partyColours = {
+		dup: 'red',
+		sinnfein: 'green',
+		alliance: 'yellow',
+	}
+
 	const voteBars = [
 		{
-			color: 'red',
+			party: 'dup',
+			candidate: 'Tony',
 			votes: 750,
 		},
 		{
-			color: 'blue',
+			party: 'sinnfein',
+			candidate: 'Alice',
 			votes: 500,
 		},
 		{
-			color: 'green',
+			party: 'alliance',
+			candidate: 'Sara',
 			votes: 250,
 		},
 	];
 
 	const voteData = {
 		ballot: 'Belfast East',
+		year: 2021,
 		quota: 600,
 		votes: voteBars,
 	}
@@ -43,13 +53,16 @@ export const VoteGraph: React.FC<{
 			}}
 		>
 			<svg width={width} height={height}>
+
+				
 				
 				{voteData.votes.map((bar, index) => {
 					return (
 						<Bar
 							maxWidth={(bar.votes / voteData.quota) * quotaLine}
 							barHeight={barHeight}
-							color={bar.color}
+							color={partyColours[bar.party]}
+							label={bar.candidate + " - " + bar.party}
 							offset={index}
 							frame={frame}
 							fps={fps}
@@ -58,6 +71,8 @@ export const VoteGraph: React.FC<{
 					);
 				})}
 				<line x1={quotaLine} x2={quotaLine} y1={0} y2={height} stroke="green" strokeWidth={3}/>
+				<text x={quotaLine} y={20} fontSize={30}>Quota = {voteData.quota}</text>
+				<text x={width / 3} y={20} fontSize={30}>{voteData.ballot + " - " + voteData.year}</text>
 			</svg>
 		</AbsoluteFill>
 	);

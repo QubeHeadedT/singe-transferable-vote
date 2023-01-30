@@ -4,12 +4,13 @@ import { AbsoluteFill, spring, interpolate } from "remotion";
 export const Bar: React.FC<{
   maxWidth: number;
   color: string;
+  label: string;
   barHeight: number;
   offset: number;
   frame: number;
   fps: number;
   padding: number;
-}> = ({ maxWidth, color, barHeight, offset, frame, fps, padding}) => {
+}> = ({ maxWidth, color, label, barHeight, offset, frame, fps, padding}) => {
 
   const fill = spring({
     fps,
@@ -23,6 +24,9 @@ export const Bar: React.FC<{
   const barWidth = interpolate(fill, [0, 1], [0, maxWidth]);
 
   return (
-    <rect y={offset*(barHeight + padding)} fill={color} width={barWidth} height={barHeight} rx="0.1em"/>
+    <g>
+      <rect y={offset*(barHeight + padding) + padding} fill={color} width={barWidth} height={barHeight} rx="0.1em"/>
+      <text x={50} y={offset*(barHeight + padding) + padding + (barHeight / 2)} fontSize={30}>{label}</text>
+    </g>
   )
 }
