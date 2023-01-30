@@ -25,7 +25,7 @@ export const Bar: React.FC<{
 
   return (
     <g>
-      <rect y={offset*(barHeight + padding) + padding} fill={color} width={barWidth} height={barHeight} rx="0.1em"/>
+      <rect y={offset*(barHeight + padding) + padding} fill={color} width={barWidth} height={barHeight} rx="0.5em"/>
       <text x={50} y={offset*(barHeight + padding) + padding + (barHeight / 2)} fontSize={30}>{label}</text>
     </g>
   )
